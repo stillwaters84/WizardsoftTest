@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardsoftTest", "WizardsoftTest\WizardsoftTest.csproj", "{BF3F525D-67E9-4E28-880A-B24742C16EDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WizardsoftTest", "WizardsoftTest\WizardsoftTest.csproj", "{BF3F525D-67E9-4E28-880A-B24742C16EDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardsoftTest.Services", "WizardsoftTest.Services\WizardsoftTest.Services.csproj", "{DCC84350-C190-41FB-8B86-B17087D615C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardsoftTestApp", "WizardsoftTestApp\WizardsoftTestApp.csproj", "{7C607B7D-37AB-4283-8CA2-E7BF88BB3263}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BF3F525D-67E9-4E28-880A-B24742C16EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF3F525D-67E9-4E28-880A-B24742C16EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF3F525D-67E9-4E28-880A-B24742C16EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCC84350-C190-41FB-8B86-B17087D615C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCC84350-C190-41FB-8B86-B17087D615C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCC84350-C190-41FB-8B86-B17087D615C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCC84350-C190-41FB-8B86-B17087D615C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C607B7D-37AB-4283-8CA2-E7BF88BB3263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C607B7D-37AB-4283-8CA2-E7BF88BB3263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C607B7D-37AB-4283-8CA2-E7BF88BB3263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C607B7D-37AB-4283-8CA2-E7BF88BB3263}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

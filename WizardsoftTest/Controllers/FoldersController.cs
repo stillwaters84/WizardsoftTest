@@ -34,7 +34,7 @@ namespace WizardsoftTest.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Folder newFolder)
         {
-            if (string.IsNullOrEmpty(newFolder.FolderName) || newFolder.FolderParentId is null)
+            if (string.IsNullOrEmpty(newFolder.FolderName) || string.IsNullOrEmpty(newFolder.FolderParentId))
             {
                 return BadRequest();
             }
@@ -61,12 +61,12 @@ namespace WizardsoftTest.Controllers
 
             updatedFolder.Id = folder.Id;
 
-            if(updatedFolder.FolderParentId is null)
+            if(string.IsNullOrEmpty(updatedFolder.FolderParentId))
             {
                 updatedFolder.FolderParentId = folder.Id;
             }
 
-            if(updatedFolder.FolderName is null)
+            if(string.IsNullOrEmpty(updatedFolder.FolderName))
             {
                 updatedFolder.FolderName = folder.FolderName;
             }
