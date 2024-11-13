@@ -1,9 +1,16 @@
+using WizardsoftTest.Services;
+using WizardsoftTest.Settings;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.Configure<FoldersDatabaseSettings>(
+    builder.Configuration.GetSection("CatalogueTreeDatabase"));
+builder.Services.AddSingleton<FolderService>();
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers()
+    .AddJsonOptions(
+        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
