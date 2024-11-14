@@ -60,17 +60,14 @@ static async Task WizardsoftApiWork(HttpClient client)
             newFolderReturned.Name = "ConsoleFolderUpdated2";
             newFolderReturned.FolderParentId = collection[2].Id;
             content = JsonContent.Create(newFolderReturned);
-            var updatedFolderReturned = await UpdateFolder(client, newFolderReturned.Id, content);
-            if (updatedFolderReturned is not null)
-            {
-                Console.WriteLine($"\nNew folder: \nId: {updatedFolderReturned.Id}\nName: {updatedFolderReturned.Name}\nParentId: {updatedFolderReturned.FolderParentId}\n");
-            }
+
+            Console.WriteLine($"\nNew folder: \nId: {newFolderReturned.Id}\nName: {newFolderReturned.Name}\nParentId: {newFolderReturned.FolderParentId}\n");
 
             //GET ALL UPDATED
             collection = await GetCollection(client);
             if (collection is not null)
             {
-                Console.WriteLine("\nnUpdated Collection:\n");
+                Console.WriteLine("\nUpdated Collection:\n");
                 foreach (var elem in collection)
                 {
                     Console.WriteLine($"Id: {elem.Id}\nName: {elem.Name}\nParentId: {elem.FolderParentId}\n");
@@ -78,18 +75,9 @@ static async Task WizardsoftApiWork(HttpClient client)
             }
 
             //DELETE NEW
-            Console.WriteLine("Lastly, we will delete second folder from collection");
-            Console.WriteLine("Note: if we want to delete folder with parent and childs, we will simply change parent ids of child");
-            var secondFolder = collection[2];
-            var childFolder = collection.Find(x => x.FolderParentId == secondFolder.Id);
-            if(childFolder is not null)
-            {
-                childFolder.FolderParentId = secondFolder.FolderParentId;
-                content = JsonContent.Create(childFolder);
-                var newUpdated = await UpdateFolder(client, childFolder.Id, content);
-                var result = await DeleteFolder(client, secondFolder.Id);
-                Console.WriteLine($"Result of deletion: {result}");
-            }
+            Console.WriteLine("Lastly, we will delete new folder from collection");
+            Console.WriteLine("Note: if we want to delete folder with childs, we will delete full branch");
+            await DeleteFolder(client, newFolderReturned.Id);
 
             //GET ALL DELETED
             collection = await GetCollection(client);
@@ -133,25 +121,20 @@ static async Task<Folder> PostFolder(HttpClient client, JsonContent newFolder)
     return null;
 }
 
-static async Task<Folder> UpdateFolder(HttpClient client, string folderId, JsonContent updatingFolder)
+static async Task UpdateFolder(HttpClient client, string folderId, JsonContent updatingFolder)
 {
     HttpResponseMessage result = await client.PutAsync($"/api/Folders/{folderId}", updatingFolder);
-    if (result.IsSuccessStatusCode)
+    if (!result.IsSuccessStatusCode)
     {
-        var resultString = await result.Content.ReadAsStringAsync();
-        return JsonConvert.DeserializeObject<Folder>(resultString);
+        throw new Exception(result.StatusCode.ToString());
     }
-    return null;
 }
 
-//Need to also delete all childs and more OR change parent id's
-static async Task<string> DeleteFolder(HttpClient client, string folderId)
+static async Task DeleteFolder(HttpClient client, string folderId)
 {
     HttpResponseMessage result = await client.DeleteAsync($"/api/Folders/{folderId}");
-    if (result.IsSuccessStatusCode)
+    if (!result.IsSuccessStatusCode)
     {
-        var resultString = await result.Content.ReadAsStringAsync();
-        return resultString;
+        throw new Exception(result.StatusCode.ToString());
     }
-    return null;
 }

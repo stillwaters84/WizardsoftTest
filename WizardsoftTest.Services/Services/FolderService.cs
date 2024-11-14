@@ -35,7 +35,16 @@ namespace WizardsoftTest.Services
         public async Task UpdateAsync(string id, Folder updatedFolder) =>
             await _foldersCollection.ReplaceOneAsync(x => x.Id == id, updatedFolder);
 
-        public async Task RemoveAsync(string id) =>
+        public async Task RemoveAsync(string id)
+        {
+            var childs = await _foldersCollection.Find(x => x.FolderParentId == id).ToListAsync();
+            if (childs.Any()) {
+                foreach (var child in childs)
+                {
+                    await RemoveAsync(child.Id);
+                }
+            }
             await _foldersCollection.DeleteOneAsync(x => x.Id == id);
+        }
     }
 }
