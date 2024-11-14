@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "6733b6a06f4f4d45331b6934"
+  },
+  "Name": "Root",
+  "ParentId": null
+},
+{
+  "_id": {
+    "$oid": "6733b6ff6f4f4d45331b6935"
+  },
+  "Name": "FirstBranch",
+  "ParentId": "6733b6a06f4f4d45331b6934"
+},
+{
+  "_id": {
+    "$oid": "673522f84e26cee96d90c2a1"
+  },
+  "Name": "SecondBranch",
+  "ParentId": "6733b6a06f4f4d45331b6934"
+},
+{
+  "_id": {
+    "$oid": "6735dc1647945515ff57d185"
+  },
+  "Name": "SecondBranchFirstSon",
+  "ParentId": "673522f84e26cee96d90c2a1"
+},
+{
+  "_id": {
+    "$oid": "6735e66a47945515ff57d188"
+  },
+  "Name": "FirstBranchFirstSon",
+  "ParentId": "6733b6ff6f4f4d45331b6935"
+},
+{
+  "_id": {
+    "$oid": "6735e67147945515ff57d189"
+  },
+  "Name": "FirstBranchSecondSon",
+  "ParentId": "6733b6ff6f4f4d45331b6935"
+},
+{
+  "_id": {
+    "$oid": "6735e67847945515ff57d18a"
+  },
+  "Name": "FirstBranchThirdSon",
+  "ParentId": "6733b6ff6f4f4d45331b6935"
+}]
